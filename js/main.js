@@ -1,8 +1,8 @@
 /* ============================================
-   主逻辑 - 主题切换、导航、文章索引
+   主逻辑 - 主题切换、导航、文章索引、动效
    ============================================ */
 
-// --- 文章索引（新增文章只需在这里添加一条） ---
+// --- 文章索引（新增文章只需在这里添加） ---
 const POSTS_INDEX = [
   {
     slug: 'hello-world',
@@ -31,13 +31,12 @@ function toggleTheme() {
 }
 
 function updateThemeBtn(theme) {
-  const btn = document.getElementById('themeBtn');
-  if (btn) {
-    btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+  const icon = document.getElementById('themeIcon');
+  if (icon) {
+    icon.className = theme === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
   }
 }
 
-// 初始化主题
 (function initTheme() {
   const saved = localStorage.getItem('theme') || 'dark';
   document.documentElement.setAttribute('data-theme', saved);
@@ -46,8 +45,7 @@ function updateThemeBtn(theme) {
 
 // --- 移动端导航 ---
 function toggleNav() {
-  const links = document.getElementById('navLinks');
-  links.classList.toggle('open');
+  document.getElementById('navLinks').classList.toggle('open');
 }
 
 // --- 打字机效果 ---
@@ -59,7 +57,7 @@ function typeWriter(element, texts, speed = 80) {
   function tick() {
     const current = texts[textIdx];
     if (!isDeleting) {
-      element.textContent = current.substring(0, charIdx + 1);
+      element.innerHTML = current.substring(0, charIdx + 1) + '<span class="cursor"></span>';
       charIdx++;
       if (charIdx === current.length) {
         isDeleting = true;
@@ -67,14 +65,14 @@ function typeWriter(element, texts, speed = 80) {
         return;
       }
     } else {
-      element.textContent = current.substring(0, charIdx - 1);
+      element.innerHTML = current.substring(0, charIdx - 1) + '<span class="cursor"></span>';
       charIdx--;
       if (charIdx === 0) {
         isDeleting = false;
         textIdx = (textIdx + 1) % texts.length;
       }
     }
-    setTimeout(tick, isDeleting ? 30 : speed);
+    setTimeout(tick, isDeleting ? 40 : speed);
   }
 
   tick();
@@ -84,29 +82,28 @@ function typeWriter(element, texts, speed = 80) {
 function renderHomePage() {
   const grid = document.getElementById('postsGrid');
   const tagCloud = document.getElementById('tagCloud');
-  const typingEl = document.getElementById('typingText');
+  const typingEl = document.getElementById('typewriter');
 
   if (!grid) return;
 
-  // 打字机
+  // 启动 Hero 打字机
   if (typingEl) {
     typeWriter(typingEl, [
-      '$ vim new_post.md',
-      '$ git commit -m "update"',
-      '$ python blog.py',
-      '$ echo "Hello World"'
+      '南京信息工程大学 · 软件工程',
+      '云计算学习者 & Linux 运维',
+      'Docker · Nginx · 腾讯云 CVM'
     ]);
   }
 
   // 渲染标签云
   const allTags = [...new Set(POSTS_INDEX.flatMap(p => p.tags))];
   if (tagCloud) {
-    tagCloud.innerHTML = '<span class="tag-item" data-tag="all" onclick="filterByTag(\'all\')">全部</span>' +
+    tagCloud.innerHTML = '<span class="tag-item active" data-tag="all" onclick="filterByTag(\'all\')">全部</span>' +
       allTags.map(t => `<span class="tag-item" data-tag="${t}" onclick="filterByTag('${t}')">${t}</span>`).join('');
   }
 
-  // 渲染文章卡片
-  renderPosts(POSTS_INDEX);
+  // 初始仅渲染最新 3 篇文章
+  renderPosts(POSTS_INDEX.slice(0, 3));
 }
 
 function renderPosts(posts) {
@@ -140,16 +137,28 @@ let currentTag = 'all';
 
 function filterByTag(tag) {
   currentTag = tag;
-  // 更新标签高亮
   document.querySelectorAll('.tag-item').forEach(el => {
     el.classList.toggle('active', el.dataset.tag === tag);
   });
-  // 过滤文章
+  const source = POSTS_INDEX.slice(0, 3);
   const filtered = tag === 'all'
-    ? POSTS_INDEX
-    : POSTS_INDEX.filter(p => p.tags.includes(tag));
+    ? source
+    : source.filter(p => p.tags.includes(tag));
   renderPosts(filtered);
 }
+
+// --- 滚动渐入动画 ---
+(function initScrollAnim() {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  });
+})();
 
 // --- 初始化 ---
 document.addEventListener('DOMContentLoaded', renderHomePage);

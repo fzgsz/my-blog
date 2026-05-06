@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Blog | 终端极客风博客</title>
+  <title>FZGSZ · Cloud Dev</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -12,50 +15,126 @@
   <!-- 导航栏 -->
   <nav class="navbar">
     <a href="index.html" class="nav-logo">
-      &gt;_ blog<span class="cursor"></span>
+      ~/fzgsz<span>.dev</span><span class="cursor"></span>
     </a>
     <button class="nav-hamburger" onclick="toggleNav()" aria-label="菜单">&#9776;</button>
     <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">首页</a></li>
-      <li><a href="about.html">关于</a></li>
+      <li><a href="index.html">home</a></li>
+      <li><a href="about.html">about</a></li>
       <li>
-        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">☀️</button>
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="切换主题">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
       </li>
     </ul>
   </nav>
 
-  <!-- 主内容 -->
-  <div class="main-content">
-    <!-- Hero -->
-    <div class="hero">
-      <h1>Hello, <span class="accent">World</span></h1>
-      <p>用代码书写世界，用文字记录思考</p>
-      <span class="typing-text" id="typingText"></span>
+  <!-- Hero 区域 -->
+  <section class="hero">
+    <div class="hero-badge">Cloud Developer · NUIST</div>
+    <h1>Hello,<br>I'm <span class="name-accent">FZGSZ</span></h1>
+    <p class="hero-subtitle" id="typewriter"><span class="cursor"></span></p>
+    <div class="hero-cta">
+      <a href="#posts" class="btn btn-primary"><i class="fa-solid fa-rocket"></i> 阅读文章</a>
+      <a href="about.html" class="btn btn-outline"><i class="fa-solid fa-user"></i> 关于我</a>
+    </div>
+    <div class="status-pill">
+      <div class="status-line"><div class="dot green"></div> server: online</div>
+      <div class="status-line"><div class="dot blue"></div> docker: running</div>
+      <div class="status-line"><div class="dot yellow"></div> learning: k8s</div>
+    </div>
+    <div class="scroll-hint">scroll</div>
+  </section>
+
+  <div class="page">
+    <!-- 社交链接 -->
+    <div class="section fade-in" id="social">
+      <div class="section-label">01 &mdash; contact</div>
+      <h2 class="section-title">找到我</h2>
+      <div class="social-links">
+        <a href="https://github.com/fzgsz" target="_blank" class="social-link">
+          <i class="fa-brands fa-github"></i>
+          <span>github.com/fzgsz</span>
+          <i class="fa-solid fa-arrow-right link-arrow"></i>
+        </a>
+        <a href="mailto:2990710440@qq.com" class="social-link">
+          <i class="fa-solid fa-envelope"></i>
+          <span>2990710440@qq.com</span>
+          <i class="fa-solid fa-arrow-right link-arrow"></i>
+        </a>
+        <a href="https://blog.csdn.net/zhdnj" target="_blank" class="social-link">
+          <i class="fa-solid fa-blog"></i>
+          <span>CSDN 技术博客</span>
+          <i class="fa-solid fa-arrow-right link-arrow"></i>
+        </a>
+      </div>
     </div>
 
-    <!-- 搜索 -->
-    <div class="search-bar">
-      <span class="search-icon">&#128269;</span>
-      <input type="text" id="searchInput" placeholder="搜索文章...">
+    <hr class="divider">
+
+    <!-- 最新文章 -->
+    <div class="section fade-in" id="posts">
+      <div class="section-label">02 &mdash; latest posts</div>
+      <h2 class="section-title">最新文章</h2>
+
+      <!-- 搜索 -->
+      <div class="search-bar">
+        <span class="search-icon">&#128269;</span>
+        <input type="text" id="searchInput" placeholder="搜索文章...">
+      </div>
+
+      <!-- 标签云 -->
+      <div class="tag-cloud" id="tagCloud"></div>
+
+      <!-- 文章列表 -->
+      <div class="posts-grid" id="postsGrid"></div>
+
+      <!-- 空状态 -->
+      <div class="empty-state" id="emptyState" style="display:none;">
+        <div class="icon">&#128196;</div>
+        <p>没有找到匹配的文章</p>
+      </div>
     </div>
 
-    <!-- 标签云 -->
-    <div class="tag-cloud" id="tagCloud"></div>
+    <hr class="divider">
 
-    <!-- 文章列表 -->
-    <div class="posts-grid" id="postsGrid"></div>
-
-    <!-- 空状态 -->
-    <div class="empty-state" id="emptyState" style="display:none;">
-      <div class="icon">&#128196;</div>
-      <p>没有找到匹配的文章</p>
+    <!-- 技能展示 -->
+    <div class="section fade-in" id="skills">
+      <div class="section-label">03 &mdash; tech stack</div>
+      <h2 class="section-title">技术栈</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fa-brands fa-linux"></i></div>
+          <h3>Linux 运维</h3>
+          <p>CentOS / Shell 脚本<br>权限管理 / 进程监控</p>
+          <span class="skill-tag">熟练</span>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fa-solid fa-server"></i></div>
+          <h3>Web 服务</h3>
+          <p>Nginx 配置 / 反向代理<br>SSL / 负载均衡</p>
+          <span class="skill-tag">熟练</span>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fa-brands fa-docker"></i></div>
+          <h3>容器技术</h3>
+          <p>Docker 部署<br>容器编排 (学习中)</p>
+          <span class="skill-tag">进阶中</span>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+          <h3>云平台</h3>
+          <p>腾讯云 CVM / COS<br>VPC 网络配置</p>
+          <span class="skill-tag">熟练</span>
+        </div>
+      </div>
     </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+      <p>Built with <span class="accent">&lt;/&gt;</span> and <span class="accent">&#9829;</span> | &copy; 2024–2026 <a href="#">FZGSZ</a></p>
+    </footer>
   </div>
-
-  <!-- 页脚 -->
-  <footer class="footer">
-    <p>Built with <span class="accent">&lt;/&gt;</span> and <span class="accent">♥</span> | 2026</p>
-  </footer>
 
   <script src="js/main.js"></script>
   <script src="js/search.js"></script>
