@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于 | 终端极客风博客</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">
+      &gt;_ blog<span class="cursor"></span>
+    </a>
+    <button class="nav-hamburger" onclick="toggleNav()" aria-label="菜单">&#9776;</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="about.html">关于</a></li>
+      <li>
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">☀️</button>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- 主内容 -->
+  <div class="main-content">
+    <div class="about-content">
+      <h1 style="font-family: 'JetBrains Mono', monospace; margin-bottom: 1.5rem;">
+        <span style="color: var(--accent);">&gt;</span> about.md
+      </h1>
+
+      <div class="terminal-box">
+        <div class="terminal-header">
+          <div class="terminal-dot red"></div>
+          <div class="terminal-dot yellow"></div>
+          <div class="terminal-dot green"></div>
+        </div>
+        <div class="terminal-line"><span class="prompt">$</span> whoami</div>
+        <div class="terminal-line"><span class="value">一个热爱编程的开发者</span></div>
+        <br>
+        <div class="terminal-line"><span class="prompt">$</span> cat interests.txt</div>
+        <div class="terminal-line"><span class="value">Python · JavaScript · AI · 开源</span></div>
+        <br>
+        <div class="terminal-line"><span class="prompt">$</span> cat motto.txt</div>
+        <div class="terminal-line"><span class="value">代码改变世界，键盘创造未来</span></div>
+        <br>
+        <div class="terminal-line"><span class="prompt">$</span> echo $STATUS</div>
+        <div class="terminal-line"><span class="value" style="color: var(--accent);">● 在线学习中...</span></div>
+      </div>
+
+      <div class="markdown-body">
+        <h2>关于这个博客</h2>
+        <p>这是我的个人技术博客，记录学习笔记、技术探索和生活感悟。</p>
+        <p>博客使用纯 HTML/CSS/JS 构建，暗色极客风主题，支持 Markdown 写作。</p>
+
+        <h2>技术栈</h2>
+        <ul>
+          <li>HTML5 + CSS3 + Vanilla JavaScript</li>
+          <li>Markdown 渲染（marked.js）</li>
+          <li>暗色/亮色主题切换</li>
+          <li>前端全文搜索</li>
+          <li>响应式布局</li>
+        </ul>
+
+        <h2>联系方式</h2>
+        <p>欢迎通过以下方式联系我：</p>
+        <ul>
+          <li>GitHub: <a href="#">your-github</a></li>
+          <li>Email: <a href="#">your-email@example.com</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p>Built with <span class="accent">&lt;/&gt;</span> and <span class="accent">♥</span> | 2026</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

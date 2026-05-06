@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Blog | 终端极客风博客</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">
+      &gt;_ blog<span class="cursor"></span>
+    </a>
+    <button class="nav-hamburger" onclick="toggleNav()" aria-label="菜单">&#9776;</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">首页</a></li>
+      <li><a href="about.html">关于</a></li>
+      <li>
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">☀️</button>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- 主内容 -->
+  <div class="main-content">
+    <!-- Hero -->
+    <div class="hero">
+      <h1>Hello, <span class="accent">World</span></h1>
+      <p>用代码书写世界，用文字记录思考</p>
+      <span class="typing-text" id="typingText"></span>
+    </div>
+
+    <!-- 搜索 -->
+    <div class="search-bar">
+      <span class="search-icon">&#128269;</span>
+      <input type="text" id="searchInput" placeholder="搜索文章...">
+    </div>
+
+    <!-- 标签云 -->
+    <div class="tag-cloud" id="tagCloud"></div>
+
+    <!-- 文章列表 -->
+    <div class="posts-grid" id="postsGrid"></div>
+
+    <!-- 空状态 -->
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <div class="icon">&#128196;</div>
+      <p>没有找到匹配的文章</p>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p>Built with <span class="accent">&lt;/&gt;</span> and <span class="accent">♥</span> | 2026</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/search.js"></script>
+</body>
+</html>
