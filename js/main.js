@@ -17,7 +17,14 @@ const POSTS_INDEX = [
     date: '2026-05-06',
     tags: ['AI', '工具', '教程'],
     excerpt: '如何将 DeepSeek 的 API 接入 Claude Code，实现国内可用的 AI 编程助手。从安装配置到实际使用的完整教程。'
-  }
+  },
+  {
+    slug: 'first-blog',
+    title: '自己写的第一篇博客',
+    date: '2026-05-06',
+    tags: ['随笔'],
+    excerpt: '关于「自己写的第一篇博客」的详细内容...'
+  },
 ];
 
 // --- 主题切换 ---

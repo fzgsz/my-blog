@@ -5,6 +5,8 @@
 TITLE="$1"
 TAGS_INPUT="$2"
 SLUG="${3:-$(echo "$TITLE" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-//;s/-$//')}"
+# 纯中文标题会生成空 slug，用日期兜底
+[ -z "$SLUG" ] && SLUG="post-$(date +%Y%m%d)"
 DATE=$(date +%F)
 POSTS_DIR="D:/Projects/my-blog/posts"
 MAIN_JS="D:/Projects/my-blog/js/main.js"
