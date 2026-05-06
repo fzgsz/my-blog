@@ -47,7 +47,11 @@ tags: [标签1, 标签2]
 文章内容...
 ```
 
-新增文章步骤：
+新增文章步骤（推荐用脚本，一条命令搞定）：
+```bash
+./new-post.sh "文章标题" "标签1,标签2" [slug]
+```
+手动方式：
 1. 在 `posts/` 下创建 `slug.md`
 2. 在 `js/main.js` 的 `POSTS_INDEX` 数组添加对应条目（slug、title、date、tags、excerpt）
 
