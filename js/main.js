@@ -34,6 +34,9 @@ function updateThemeBtn(theme) {
   const icon = document.getElementById('themeIcon');
   if (icon) {
     icon.className = theme === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+  } else {
+    const btn = document.getElementById('themeBtn');
+    if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
   }
 }
 
